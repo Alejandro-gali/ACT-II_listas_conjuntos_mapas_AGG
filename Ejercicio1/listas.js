@@ -37,9 +37,9 @@ do {
             break;
         case "D":
             if (notas.length == 0) {
-                console.log("No se pueden calcular las estadísticas");
+                window.alert("No se pueden calcular las estadísticas");
             } else {
-                console.log(`Estadisticas actuales de la lista de notas: \n`,
+                window.alert(`Estadisticas actuales de la lista de notas: \n`,
                     `Moda: ${moda(notas)} \n`,
                     `Máximo: ${maximo(notas)} \n`,
                     `Mínimo: ${minimo(notas)} \n`,
@@ -49,7 +49,7 @@ do {
             break;
         case "E":
             notas.length = 0;
-            console.log("La lista de notas está vacía.");
+            window.alert("La lista de notas está vacía.");
             break;
         case "F":
             const num_notas = parseInt(window.prompt("Introduzca el número de notas que quiere inicializar."));
@@ -59,14 +59,14 @@ do {
             break;
         case "G":
             if (notas.length == 0) {
-                console.log("La lista está vacía.");
+                window.alert("La lista está vacía.");
             } else {
                 notas.shift();
             }
             break;
         case "H":
             if (notas.length < 2) {
-                console.log("No existe una segunda nota.");
+                window.alert("No existe una segunda nota.");
             } else {
                 notas.splice(1, 1);
             }
@@ -79,25 +79,59 @@ do {
             }
             break;
         case "J":
-            
+            let nota_origen = parseFloat(window.prompt("Introduzca las notas cuyo valor quiere sustituir. "));
+            let nota_destino = parseFloat(window.prompt("Introduzca el valor de nota por el cual quiere sustituirla/s. "));
+            for (let i = 0; i < notas.length; i++) {
+                if (notas[i] == nota_origen) {
+                    notas[i] = nota_destino;
+                }
+            }
             break;
         case "K":
+            let nota = parseFloat(window.prompt("Introduzca una nota."));
+            let posicion = parseInt(window.prompt("Introduzca la posición de la lista donde quiere introducir la nota. (Empieza en 0)"));
+            notas[posicion] = nota;
             break;
         case "L":
+            let contador_suspensos = 0;
+            for (let i = 0; i < notas.length; i++) {
+                if (notas[i] < 5) {
+                    contador_suspensos++;
+                }
+            }
+            window.alert(`Hay un total de ${contador_suspensos} suspensos en la lista de notas. `);
             break;
         case "M":
-            console.log("Saliendo del programa.");
+            window.alert("Saliendo del programa.");
             salir = true;
             break;
         default:
-            console.log("La opción introducida no es válida.");
+            window.alert("La opción introducida no es válida.");
             break;
     }
 
 } while (!salir);
 
 function moda(lista_notas) {
+    let maxRepeticiones = 0;
+    let valorModa = lista_notas[0];
 
+    for (let i = 0; i < lista_notas.length; i++) {
+        let contador = 0;
+
+        for (let j = 0; j < lista_notas.length; j++) {
+            if (lista_notas[i] === lista_notas[j]) {
+                contador++;
+            }
+        }
+
+        if (contador > maxRepeticiones) {
+            maxRepeticiones = contador;
+            valorModa = lista_notas[i];
+        }
+    }
+
+    return valorModa;
 }
 
 function maximo(lista_notas) {
