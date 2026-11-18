@@ -2,7 +2,7 @@ let set_participantes = new Set();
 let salir = false;
 
 do {
-    const participante = window.prompt("Gestión de Participantes. Introduzca la opción deseada: \n"
+    const opcion = window.prompt("Gestión de Participantes. Introduzca la opción deseada: \n"
         + "A. Inscribir un participante. \n"
         + "B. Dar de baja un participante. \n"
         + "C. Comprobar inscripción. \n"
@@ -11,7 +11,7 @@ do {
         + "F. Salir."
     ).toUpperCase();
 
-    switch (participante) {
+    switch (opcion) {
         case "A":
             set_participantes.add(window.prompt("Introduce el nombre de un nuevo participante."));
             break;
@@ -38,7 +38,7 @@ do {
             let acum_participantes = "";
 
             for (let participante of set_participantes) {
-                acum_participantes += (participante + ", ");
+                acum_participantes += (participante + ". ");
                 contador_participantes++;
             }
 
