@@ -1,4 +1,4 @@
-let set_participantes = new Set();
+const set_participantes = new Set();
 let salir = false;
 
 do {

@@ -1,4 +1,4 @@
-let notas = new Array();
+const notas = new Array();
 let salir = false;
 
 do {
@@ -132,6 +132,29 @@ function moda(lista_notas) {
     }
 
     return valorModa;
+}
+
+function calcular_moda() {
+    let moda;
+    let mapa = new Map();
+
+    for (let nota of notas) {
+        if (mapa.has(nota)) {
+            mapa.set(nota, mapa.get(nota) + 1);
+        } else {
+            mapa.set(nota, 1);
+        }
+    }
+
+    let max_repes = 0;
+    for (let repe of mapa.keys()) {
+        if (max_repes < repe) {
+            max_repes = repe;
+            moda = repe;
+        }
+    }
+
+    return moda;
 }
 
 function maximo(lista_notas) {
