@@ -87,7 +87,7 @@ do {
             break;
         case "G":
             const ISBN_E = parseInt(window.prompt("Introduzca el ISBN del libro: "));
-            if(!map_libros.has(ISBN_E) || map_libros.get(ISBN_E)._num_ejemplares == 0){
+            if (!map_libros.has(ISBN_E) || map_libros.get(ISBN_E)._num_ejemplares == 0) {
                 console.log("Está mal o el ISBN o no quedan ejemplares restantes");
             } else {
                 map_libros.get(ISBN_E)._num_ejemplares--;
@@ -96,7 +96,7 @@ do {
             break;
         case "H":
             const ISBN_F = parseInt(window.prompt("Introduzca el ISBN del libro: "));
-            if(!map_libros.has(ISBN_F)){
+            if (!map_libros.has(ISBN_F)) {
                 console.log(`No se encuentra el libro con el ISBN ${ISBN_F}`);
             } else {
                 map_libros.get(ISBN_F)._num_ejemplares++;
@@ -104,7 +104,25 @@ do {
             }
             break;
         case "I":
-            
+            if (map_libros.size === 0) {
+                console.log("El catálogo está vacío.");
+            } else {
+                let total_libros = map_libros.size;
+                let total_ejemplares = 0;
+                let libro_max_ejemplares = null;
+
+                for (let libro of map_libros.keys()) {
+                    total_ejemplares += map_libros.get(libro)._num_ejemplares;
+
+                    if (libro_max_ejemplares == null || map_libros.get(libro)._num_ejemplares > libro_max_ejemplares._num_ejemplares) {
+                        libro_max_ejemplares = map_libros.get(libro);
+                    }
+                }
+
+                console.log(`Número total de libros registrados: ${total_libros}`);
+                console.log(`Total de ejemplares disponibles: ${total_ejemplares}`);
+                console.log(`Libro con más ejemplares disponibles: ${libro_max_ejemplares._titulo} (${libro_max_ejemplares._num_ejemplares} ejemplares)`);
+            }
             break;
         case "J":
             map_libros.clear();
